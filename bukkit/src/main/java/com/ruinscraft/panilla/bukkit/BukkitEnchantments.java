@@ -50,6 +50,9 @@ public class BukkitEnchantments implements IEnchantments {
 
     @Override
     public boolean conflicting(EnchantmentCompat enchCompat, EnchantmentCompat _enchCompat) {
+        if (enchCompat == null || _enchCompat == null) {
+            return false;
+        }
         Enchantment bukkitEnchantment = getBukkitEnchantment(enchCompat);
         Enchantment _bukkitEnchantment = getBukkitEnchantment(_enchCompat);
         if (bukkitEnchantment == null || _bukkitEnchantment == null) {
