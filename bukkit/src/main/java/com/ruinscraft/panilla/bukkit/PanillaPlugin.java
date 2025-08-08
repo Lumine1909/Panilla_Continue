@@ -157,7 +157,22 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
     private void initVersion() {
         getLogger().info("DATA VERSION " + Bukkit.getUnsafe().getDataVersion());
 
-        // Paper 1.21.5+
+        // Paper 1.21.7
+        if (Bukkit.getUnsafe().getDataVersion() >= 4438) {
+            packetSerializerClass = com.ruinscraft.panilla.paper.v1_21_5.io.dplx.PacketSerializer.class;
+            protocolConstants = new IProtocolConstants() {
+                @Override
+                public int maxBookPages() {
+                    return 100;
+                }
+            };
+            playerInjector = new com.ruinscraft.panilla.paper.v1_21_5.io.PlayerInjector();
+            packetInspector = new com.ruinscraft.panilla.paper.v1_21_5.io.PacketInspector(this);
+            containerCleaner = new com.ruinscraft.panilla.paper.v1_21_5.InventoryCleaner(this);
+            return;
+        }
+
+        // Paper 1.21.5
         if (Bukkit.getUnsafe().getDataVersion() >= 4325) {
             packetSerializerClass = com.ruinscraft.panilla.paper.v1_21_5.io.dplx.PacketSerializer.class;
             protocolConstants = new IProtocolConstants() {
@@ -172,8 +187,8 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
             return;
         }
 
-        // Paper 1.21.2, 1.21.3, 1.21.4
-        if (Bukkit.getUnsafe().getDataVersion() == 4080 || Bukkit.getUnsafe().getDataVersion() == 4082 || Bukkit.getUnsafe().getDataVersion() == 4189) {
+        // Paper 1.21.2
+        if (Bukkit.getUnsafe().getDataVersion() <= 4080) {
             packetSerializerClass = com.ruinscraft.panilla.paper.v1_21_3.io.dplx.PacketSerializer.class;
             protocolConstants = new IProtocolConstants() {
                 @Override
@@ -188,22 +203,7 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
         }
 
         // Paper 1.21, 1.21.1
-        if (Bukkit.getUnsafe().getDataVersion() == 3953 || Bukkit.getUnsafe().getDataVersion() == 3955) {
-            packetSerializerClass = com.ruinscraft.panilla.paper.v1_21.io.dplx.PacketSerializer.class;
-            protocolConstants = new IProtocolConstants() {
-                @Override
-                public int maxBookPages() {
-                    return 100;
-                }
-            };
-            playerInjector = new com.ruinscraft.panilla.paper.v1_21.io.PlayerInjector();
-            packetInspector = new com.ruinscraft.panilla.paper.v1_21.io.PacketInspector(this);
-            containerCleaner = new com.ruinscraft.panilla.paper.v1_21.InventoryCleaner(this);
-            return;
-        }
-
-        // Paper 1.21, 1.21.1
-        if (Bukkit.getUnsafe().getDataVersion() == 3953 || Bukkit.getUnsafe().getDataVersion() == 3955) {
+        if (Bukkit.getUnsafe().getDataVersion() >= 3953) {
             packetSerializerClass = com.ruinscraft.panilla.paper.v1_21.io.dplx.PacketSerializer.class;
             protocolConstants = new IProtocolConstants() {
                 @Override
