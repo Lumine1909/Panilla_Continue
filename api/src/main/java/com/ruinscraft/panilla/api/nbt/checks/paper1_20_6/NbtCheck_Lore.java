@@ -22,12 +22,11 @@ public class NbtCheck_Lore extends NbtCheck {
                 return NbtCheckResult.CRITICAL; // can cause crashes
             }
 
+            if (lore.size() > 0 && lore.isCompound(0)) {
+                return NbtCheckResult.CRITICAL;  // can cause crashes
+            }
+
             for (int i = 0; i < lore.size(); i++) {
-
-                if (lore.isCompound(i)) {
-                    return NbtCheckResult.CRITICAL; // can cause crashes
-                }
-
                 String line = lore.getString(i);
 
                 if (line.length() > panilla.getProtocolConstants().NOT_PROTOCOL_maxLoreLineLength()) {
