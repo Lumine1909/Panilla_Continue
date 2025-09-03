@@ -16,13 +16,18 @@ public class NbtCheck_Lore extends NbtCheck {
     @Override
     public NbtCheckResult check(INbtTagCompound tag, String itemName, IPanilla panilla) {
         if (tag.hasKeyOfType(getName(), NbtDataType.LIST)) {
-            INbtTagList lore = tag.getList(getName());
+            INbtTagList lore = tag.getList(getName(), NbtDataType.STRING);
 
             if (lore.size() > panilla.getProtocolConstants().NOT_PROTOCOL_maxLoreLines()) {
                 return NbtCheckResult.CRITICAL; // can cause crashes
             }
 
             for (int i = 0; i < lore.size(); i++) {
+
+                if (lore.isCompound(i)) {
+                    return NbtCheckResult.CRITICAL; // can cause crashes
+                }
+
                 String line = lore.getString(i);
 
                 if (line.length() > panilla.getProtocolConstants().NOT_PROTOCOL_maxLoreLineLength()) {
