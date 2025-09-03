@@ -31,7 +31,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:9.0.0-beta13'
+        classpath 'com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:9.0.2'
     }
 }
 

@@ -5,7 +5,7 @@ plugins {
 dependencies {
     compileOnly(project(":panilla-api"))
     paperweight.paperDevBundle("1.21.3-R0.1-SNAPSHOT")
-    implementation("de.tr7zw:item-nbt-api:2.15.0")
+    implementation(libs.item.nbt.api)
 }
 
 java {
