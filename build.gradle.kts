@@ -1,9 +1,9 @@
 allprojects {
     group = "com.ruinscraft"
-    version = "1.13.3-SNAPSHOT"
+    version = "1.13.3"
 }
 
-version = "1.13.3-SNAPSHOT"
+version = "1.13.3"
 
 repositories {
     mavenCentral()
