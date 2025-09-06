@@ -7,6 +7,7 @@ import com.ruinscraft.panilla.api.config.PTranslations;
 import com.ruinscraft.panilla.api.io.IPacketInspector;
 import com.ruinscraft.panilla.api.io.IPacketSerializer;
 import com.ruinscraft.panilla.api.io.IPlayerInjector;
+import com.ruinscraft.panilla.bukkit.metrics.Metrics;
 import com.ruinscraft.panilla.paper.v1_21.InventoryCleaner;
 import com.ruinscraft.panilla.paper.v1_21.io.PacketInspector;
 import com.ruinscraft.panilla.paper.v1_21.io.PlayerInjector;
@@ -430,6 +431,7 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
                 getLogger().warning("Unknown server implementation. " + Bukkit.getVersion() + " may not be supported by Panilla.");
                 return;
         }
+        new Metrics(this, 27196);
     }
 
     @Override

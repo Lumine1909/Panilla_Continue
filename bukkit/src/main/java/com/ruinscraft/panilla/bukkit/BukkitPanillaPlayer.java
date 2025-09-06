@@ -45,5 +45,4 @@ public class BukkitPanillaPlayer implements IPanillaPlayer {
 
         return inDisabledWorld || hasPermission(PConfig.PERMISSION_BYPASS);
     }
-
 }
