@@ -54,7 +54,7 @@ public class PacketInspector implements IPacketInspector {
             if (carried == null || carried.isEmpty() || carried.getComponents().isEmpty()) return;
 
             NbtTagCompound tag = new NbtTagCompound(
-                    NBT.itemStackToNBT(carried.getBukkitStack()).getCompound("components")
+                NBT.itemStackToNBT(carried.getBukkitStack()).getCompound("components")
             );
             String itemClass = carried.getItem().getDescriptionId();
             String packetClass = packet.getClass().getSimpleName();
