@@ -43,7 +43,26 @@ public class PacketInspector implements IPacketInspector {
         int windowId = packet.containerId();
         if (windowId != 0 && panilla.getPConfig().ignoreNonPlayerInventories) return;
 
+        var craftPlayer = (CraftPlayer) player.getHandle();
+        var nmsPlayer = craftPlayer.getHandle();
+        var menu = nmsPlayer.containerMenu;
+
         int slot = packet.slotNum();
+
+        if (slot < 0 || slot >= menu.slots.size()) {
+            ItemStack carried = menu.getCarried();
+            if (carried == null || carried.isEmpty() || carried.getComponents().isEmpty()) return;
+
+            NbtTagCompound tag = new NbtTagCompound(
+                NBT.itemStackToNBT(carried.getBukkitStack()).getCompound("components")
+            );
+            String itemClass = carried.getItem().getDescriptionId();
+            String packetClass = packet.getClass().getSimpleName();
+
+            NbtChecks.checkPacketPlayIn(-1, tag, itemClass, packetClass, panilla);
+            return;
+        }
+
         ItemStack item = ((CraftPlayer) player.getHandle()).getHandle().containerMenu.getSlot(slot).getItem();
 
         if (item == null || item.isEmpty() || item.getComponents().isEmpty()) return;
