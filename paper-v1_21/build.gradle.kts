@@ -6,6 +6,7 @@ dependencies {
     compileOnly(project(":panilla-api"))
     paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
     implementation(libs.item.nbt.api)
+    compileOnly("me.lucko:spark-paper:1.10.119-SNAPSHOT")
 }
 
 java {
