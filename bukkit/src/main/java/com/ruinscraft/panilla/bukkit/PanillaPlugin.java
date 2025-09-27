@@ -97,6 +97,7 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
         pConfig = new BukkitPConfig();
 
         pConfig.language = getConfig().getString("language", pConfig.language);
+        pConfig.safeMode = getConfig().getBoolean("safe-mode", pConfig.safeMode);
         pConfig.consoleLogging = getConfig().getBoolean("logging.console", pConfig.consoleLogging);
         pConfig.chatLogging = getConfig().getBoolean("logging.chat", pConfig.chatLogging);
         pConfig.strictness = PStrictness.valueOf(getConfig().getString("strictness", pConfig.strictness.name()).toUpperCase());
@@ -156,6 +157,7 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
 
     @SuppressWarnings("deprecation")
     private void initVersion() {
+        new Metrics(this, 27196);
         getLogger().info("DATA VERSION " + Bukkit.getUnsafe().getDataVersion());
 
         // Paper 1.21.7
@@ -431,7 +433,6 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
                 getLogger().warning("Unknown server implementation. " + Bukkit.getVersion() + " may not be supported by Panilla.");
                 return;
         }
-        new Metrics(this, 27196);
     }
 
     @Override
