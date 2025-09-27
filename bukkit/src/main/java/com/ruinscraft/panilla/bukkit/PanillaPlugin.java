@@ -189,7 +189,7 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
         }
 
         // Paper 1.21.2
-        if (Bukkit.getUnsafe().getDataVersion() <= 4080) {
+        if (Bukkit.getUnsafe().getDataVersion() >= 4080) {
             packetSerializerClass = com.ruinscraft.panilla.paper.v1_21_3.io.dplx.PacketSerializer.class;
             protocolConstants = new IProtocolConstants() {
                 @Override
