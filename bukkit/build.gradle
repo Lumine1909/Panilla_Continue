@@ -21,7 +21,6 @@ dependencies {
     implementation project(':panilla-paper-v1_21')
     implementation project(':panilla-paper-v1_21_3')
     implementation project(':panilla-paper-v1_21_5')
-    implementation project(':panilla-paper-v1_21_7')
 
     compileOnly 'org.bukkit:bukkit:1.13.2-R0.1-SNAPSHOT' // use 1.13 Bukkit API
 }

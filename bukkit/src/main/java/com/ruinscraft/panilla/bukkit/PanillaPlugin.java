@@ -160,22 +160,7 @@ public class PanillaPlugin extends JavaPlugin implements IPanilla {
         new Metrics(this, 27196);
         getLogger().info("DATA VERSION " + Bukkit.getUnsafe().getDataVersion());
 
-        // Paper 1.21.7
-        if (Bukkit.getUnsafe().getDataVersion() >= 4438) {
-            packetSerializerClass = com.ruinscraft.panilla.paper.v1_21_5.io.dplx.PacketSerializer.class;
-            protocolConstants = new IProtocolConstants() {
-                @Override
-                public int maxBookPages() {
-                    return 100;
-                }
-            };
-            playerInjector = new com.ruinscraft.panilla.paper.v1_21_5.io.PlayerInjector();
-            packetInspector = new com.ruinscraft.panilla.paper.v1_21_5.io.PacketInspector(this);
-            containerCleaner = new com.ruinscraft.panilla.paper.v1_21_5.InventoryCleaner(this);
-            return;
-        }
-
-        // Paper 1.21.5
+        // Paper 1.21.5 - 1.21.10
         if (Bukkit.getUnsafe().getDataVersion() >= 4325) {
             packetSerializerClass = com.ruinscraft.panilla.paper.v1_21_5.io.dplx.PacketSerializer.class;
             protocolConstants = new IProtocolConstants() {
