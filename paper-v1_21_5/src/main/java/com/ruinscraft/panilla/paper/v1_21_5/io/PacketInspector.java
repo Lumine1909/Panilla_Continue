@@ -129,7 +129,7 @@ public class PacketInspector implements IPacketInspector {
         List<ItemStack> itemStacks = packet.items();
 
         for (ItemStack itemStack : itemStacks) {
-            if (!itemStack.isEmpty() || itemStack.getComponents().isEmpty()) {
+            if (itemStack.isEmpty() || itemStack.getComponents().isEmpty()) {
                 continue;
             }
 
